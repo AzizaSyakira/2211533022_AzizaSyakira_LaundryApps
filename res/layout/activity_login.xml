@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/lg"
-        android:background="@color/white"
+        android:background="@color/quaternary"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -35,6 +35,7 @@
             android:padding="@dimen/lg">
 
             <EditText
+                android:id="@+id/edUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_username"
@@ -43,6 +44,8 @@
                 android:padding="@dimen/lg" />
 
             <EditText
+                android:inputType="textPassword"
+                android:id="@+id/edPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/s"
@@ -52,6 +55,7 @@
                 android:padding="@dimen/lg" />
 
             <Button
+                android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/lg"

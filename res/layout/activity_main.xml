@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
-                android:text="Welcome to Laundry Apps, kira"
+                android:text="Welcome to Laundry Apps, "
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -66,6 +66,7 @@
             android:orientation="horizontal"
             android:weightSum="2">
             <androidx.cardview.widget.CardView
+                android:id="@+id/cvLaundry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/md"
@@ -92,6 +93,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
+                android:id="@+id/cvLayanan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/md"
@@ -124,6 +126,7 @@
             android:weightSum="2"
             android:orientation="horizontal">
             <androidx.cardview.widget.CardView
+                android:id="@+id/cvPelanggan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/md"
@@ -150,6 +153,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
+                android:id="@+id/cvPromo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/md"
