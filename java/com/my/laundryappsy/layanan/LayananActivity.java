@@ -19,9 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.my.laundryappsy.R;
 import com.my.laundryappsy.adapter.AdapterLayanan;
 import com.my.laundryappsy.database.SQLiteHelper2;
+import com.my.laundryappsy.helper.Constant;
 import com.my.laundryappsy.model.ModelLayanan;
 import com.my.laundryappsy.pelanggan.PelangganActivity;
 import com.my.laundryappsy.pelanggan.PelangganAddAcivity;
+import com.my.laundryappsy.pelanggan.PelangganEditActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +59,11 @@ public class LayananActivity extends AppCompatActivity {
                     view.getTag();
             int position = viewHolder.getAdapterPosition();
             ModelLayanan mp = list.get(position);
-            Toast.makeText(LayananActivity.this, ""+mp.getTipe(), Toast.LENGTH_SHORT).show();
+            Intent intent= new Intent(LayananActivity.this, LayananEditActivity.class);
+            intent.putExtra(Constant.ID, mp.getId());
+            intent.putExtra(Constant.TIPE, mp.getTipe());
+            intent.putExtra(Constant.HARGA, mp.getHarga());
+            startActivity(intent);
         }
     };
 
@@ -81,8 +87,16 @@ public class LayananActivity extends AppCompatActivity {
     private void eventHandling() {
         btnLayAdd.setOnClickListener(v -> {
             v.startAnimation(btnAnimasi);
-            startActivity(new Intent(LayananActivity.this, LayananAddActivity.class));
+            startActivityForResult(new Intent(LayananActivity.this, LayananAddActivity.class), 1);
         });
+    }
+    // Override onActivityResult
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            getData(); // Panggil getData() untuk memperbarui tampilan
+        }
     }
     private void getData (){
         list.clear();
@@ -108,5 +122,11 @@ public class LayananActivity extends AppCompatActivity {
         }catch (Exception e ){
     }
 }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData(); // Memuat ulang data setelah penghapusan atau pembaruan
+    }
+
 
 }

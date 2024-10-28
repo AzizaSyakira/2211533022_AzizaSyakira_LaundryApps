@@ -68,4 +68,26 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         }
         return pel;
     }
+    public ModelPelanggan getPelangganById(String id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_PELANGGAN + " WHERE " + KEY_PELANGGAN_ID + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{id});
+        ModelPelanggan pelanggan = null;
+        if (cursor.moveToFirst()){
+            pelanggan = new ModelPelanggan();
+            pelanggan.setId(cursor.getString(0));
+            pelanggan.setNama(cursor.getString(1));
+            pelanggan.setEmail(cursor.getString(2));
+            pelanggan.setHp(cursor.getString(3));
+        }
+        cursor.close();
+        return pelanggan;
+    }
+    public boolean deletePelanggan(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = db.delete(TABLE_PELANGGAN, KEY_PELANGGAN_ID + " = ?", new String[]{id});
+        db.close();
+        return result > 0;
+    }
+
 }

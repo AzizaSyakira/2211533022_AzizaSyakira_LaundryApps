@@ -62,4 +62,10 @@ public class SQLiteHelper2 extends SQLiteOpenHelper {
         }
         return lay;
     }
+    public boolean deleteLayanan(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_LAYANAN, KEY_LAYANAN_ID + "=?", new String[]{id}) > 0;
+    }
+
+
 }

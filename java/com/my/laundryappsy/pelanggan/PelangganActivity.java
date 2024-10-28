@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.my.laundryappsy.R;
 import com.my.laundryappsy.adapter.AdapterPelanggan;
 import com.my.laundryappsy.database.SQLiteHelper;
+import com.my.laundryappsy.helper.Constant;
 import com.my.laundryappsy.model.ModelPelanggan;
 
 import java.util.ArrayList;
@@ -59,7 +60,13 @@ public class PelangganActivity extends AppCompatActivity {
             RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) v.getTag();
             int position = viewHolder.getAdapterPosition();
             ModelPelanggan mp = list.get(position);
-            Toast.makeText(PelangganActivity.this, "Pelanggan: " + mp.getNama(), Toast.LENGTH_SHORT).show();
+            Intent intent= new Intent(PelangganActivity.this, PelangganEditActivity.class);
+            intent.putExtra(Constant.ID, mp.getId());
+            intent.putExtra(Constant.NAMA, mp.getNama());
+            intent.putExtra(Constant.EMAIL, mp.getEmail());
+            intent.putExtra(Constant.HP, mp.getHp());
+            startActivity(intent);
+
         }
     };
 
@@ -111,4 +118,10 @@ public class PelangganActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData(); // Memuat ulang data setelah penghapusan atau pembaruan
+    }
+
 }
